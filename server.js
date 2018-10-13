@@ -22,3 +22,7 @@ function runServer(databaseUrl, port = PORT) {
     });
   });
 }
+
+if (require.main === module) {
+  runServer(DATABASE_URL).catch(err => console.error(err));
+}
