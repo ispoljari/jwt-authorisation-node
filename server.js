@@ -6,7 +6,15 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 const passport = require('passport');
 
+// Override mongoose Promises with native ES6 promises
+
 mongoose.Promise = global.Promise;
+
+// import app parameters from the config files
+
+const {DATABASE_URL, PORT} = require('./config');
+
+// Run / Close Server
 
 let server;
 
