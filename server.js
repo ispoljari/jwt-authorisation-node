@@ -32,6 +32,12 @@ app.use(function(req, res, next) {
   next();
 });
 
+// Import router modules
+const {router: usersRouter} = require('./users');
+
+// Route handlers for different endpoints
+app.use('/api/users', usersRouter);
+
 // Run / Close Server
 
 let server;
