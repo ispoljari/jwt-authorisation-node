@@ -32,6 +32,9 @@ app.use(function(req, res, next) {
   next();
 });
 
+// Body parsing middleware
+app.use(express.json());
+
 // Import router modules
 const {router: usersRouter} = require('./users');
 
