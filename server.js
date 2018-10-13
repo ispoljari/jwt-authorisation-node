@@ -23,6 +23,20 @@ function runServer(databaseUrl, port = PORT) {
   });
 }
 
+function closeServer() {
+  mongoose.disconnect(() => {
+    console.info(`Disconnected from database!`);
+
+    server.close(err => {
+      if (err) {
+        console.error(err);
+        return;
+      }
+      console.info(`The server is shutting down...`);
+    });
+  });
+}
+
 if (require.main === module) {
   runServer(DATABASE_URL).catch(err => console.error(err));
 }
