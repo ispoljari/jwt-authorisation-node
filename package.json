@@ -1,0 +1,37 @@
+{
+  "name": "jwt-test",
+  "version": "1.0.0",
+  "description": "implement jwt authorization",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha --exit",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ispoljari/jwt-authorisation-node.git"
+  },
+  "keywords": [
+    "jwt",
+    "node",
+    "express",
+    "authentication",
+    "access",
+    "control",
+    "mongodb"
+  ],
+  "author": "Ivan Spoljaric",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ispoljari/jwt-authorisation-node/issues"
+  },
+  "homepage": "https://github.com/ispoljari/jwt-authorisation-node#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^6.1.0",
+    "express": "^4.16.4",
+    "mongoose": "^5.3.3",
+    "morgan": "^1.9.1",
+    "passport": "^0.4.0"
+  }
+}
