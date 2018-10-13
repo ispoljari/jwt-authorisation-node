@@ -14,6 +14,12 @@ mongoose.Promise = global.Promise;
 
 const {DATABASE_URL, PORT} = require('./config');
 
+// Setup server-side middleware
+const app = express();
+
+// Logging
+app.use(morgan('common'));
+
 // Run / Close Server
 
 let server;
