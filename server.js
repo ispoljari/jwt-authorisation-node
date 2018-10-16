@@ -53,7 +53,7 @@ app.use('/api/auth/', authRouter);
 const jwtAuth = passport.authenticate('jwt', {session: false});
 
 // Route to a protected enpoint which needs a valid JWT for access
-app.get('api/protected', jwtAuth, (req, res) => {
+app.get('/api/protected/', jwtAuth, (req, res) => {
   return res.json({
     data: 'You accessed me. I am TOP SECRET stuff!'
   });
@@ -96,5 +96,7 @@ function closeServer() {
 }
 
 if (require.main === module) {
-  runServer(DATABASE_URL).catch(err => console.error(err));
+  runServer(DATABASE_URL);
 }
+
+module.exports = {app, runServer, closeServer};
