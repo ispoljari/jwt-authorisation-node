@@ -19,4 +19,20 @@ router.post('/', (req, res) => {
       location: missingFields
     });
   }
+
+  // Check that all the fields are strings
+  const stringFields = ['username', 'password', 'firstName', 'lastName'];
+  const nonStringFields = stringFields.find(field =>
+    field in req.body && typeof req.body[field] !== 'string');
+
+  if (nonStringFields) {
+    return res.status(422).json({
+      code: 422,
+      reason: 'ValidationError',
+      message: 'Incorrect field type: expected string',
+      location: nonStringFields
+    });
+  }
+
+
 });
