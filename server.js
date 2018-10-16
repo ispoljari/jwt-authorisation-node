@@ -40,8 +40,13 @@ const {router: usersRouter} = require('./users');
 const {router: authRouter} = require('./auth');
 
 // Route handlers for /users/ & /auth/ endpoints
-app.use('/api/users', usersRouter);
+app.use('/api/users/', usersRouter);
 app.use('/api/auth/', authRouter);
+
+// Return a message if root endpoint is visited
+app.use('*', (req, res) => 
+  res.status(404).json({message: 'Not Found'})
+);
 
 // Run / Close Server
 
