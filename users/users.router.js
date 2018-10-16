@@ -34,5 +34,21 @@ router.post('/', (req, res) => {
     });
   }
 
+  // Check if username and password are trimmed. If they are not, send a warning to user. 
 
+  const explicitlyTrimmedFields = ['username', 'password'];
+  const nonTrimmedFields = explicitlyTrimmedFields.find(field => {
+    req.body[field].trim() !== req.body[field]
+  });
+
+  if (nonTrimmedFields) {
+    return res.status(422).json({
+      code: 422,
+      reason: 'ValidationError',
+      message: 'Cannot start or end with whitespace',
+      location: nonTrimmedFields
+    });
+  }
+
+  
 });
