@@ -35,11 +35,13 @@ app.use(function(req, res, next) {
 // Body parsing middleware
 app.use(express.json());
 
-// Import router modules
+// Import router modules; /users & /auth
 const {router: usersRouter} = require('./users');
+const {router: authRouter} = require('./auth');
 
-// Route handlers for different endpoints
+// Route handlers for /users/ & /auth/ endpoints
 app.use('/api/users', usersRouter);
+app.use('/api/auth/', authRouter);
 
 // Run / Close Server
 
