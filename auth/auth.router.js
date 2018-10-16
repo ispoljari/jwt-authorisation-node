@@ -18,7 +18,8 @@ const createAuthToken = function(user) {
 const localAuth = passport.authenticate('local', {session: false});
 
 router.post('/login', localAuth, (req, res) => {
-  //some code here
+  const authToken = createAuthToken(req.user.serialize());
+  return res.json({authToken});
 });
 
 module.exports = {router};
