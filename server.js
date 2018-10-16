@@ -37,11 +37,27 @@ app.use(express.json());
 
 // Import router modules; /users & /auth
 const {router: usersRouter} = require('./users');
-const {router: authRouter} = require('./auth');
+const {router: authRouter, localStrategy, jwtStrategy} = require('./auth');
+
+// Register passport local and jwt authorization strategies
+passport.use(localStrategy);
+passport.use(jwtStrategy);
+
 
 // Route handlers for /users/ & /auth/ endpoints
 app.use('/api/users/', usersRouter);
 app.use('/api/auth/', authRouter);
+
+// Assign a reference of passport jwt authentication middleware to jwtAuth
+
+const jwtAuth = passport.authenticate('jwt', {session: false});
+
+// Route to a protected enpoint which needs a valid JWT for access
+app.get('api/protected', jwtAuth, (req, res) => {
+  return res.json({
+    data: 'You accessed me. I am TOP SECRET stuff!'
+  });
+});
 
 // Return a message if root endpoint is visited
 app.use('*', (req, res) => 
